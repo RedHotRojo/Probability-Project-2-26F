@@ -1,13 +1,43 @@
 import math
 import random
 
+def compute_calibration_success_probability(x):
+    c = 
+    return c
+
+def generate_calibration_time():
+    f = 
+    return f
+
+def simulate_module():
+    t = 0  # time t=0
+    n = 1  # calibration counter n=1
+    t += 2  # t += 2 for setup
+
+    while True:
+        # generate calibration time x
+        x = generate_calibration_time()
+        c = compute_calibration_success_probability(x)
+
+        if c < 0.7:
+            return t, n, "pass"  # module passes and process ends
+        else:
+            if n == 3:
+                return t, n, "fail"  # module fails and process ends
+            else:
+                r = random.random()  # generate random number r between 0 and 1
+                if r < 0.6:
+                    s = random.uniform(1, 2)  # software reset: repair time s between 1 and 2
+                else:
+                    s = random.uniform(3, 5)  # hardware reset: repair time s between 3 and 5
+                t += s
+                n += 1
 # time t=0
 # calibration counter n=1
 # t += 2 for setup
 # generate calibration time x -- https://uva.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=34eb552c-3404-4fcc-9640-b37800fcc5f9
 # calibration time c=(x-4)/2 
-# generate random number r between 0 and 1
-# if r < 0.7, module passes and process ends
+# if c < 0.7, module passes and process ends
 # else, module fails, continue process
 # if n == 3, module fails and process ends
 # else, continue to repair
