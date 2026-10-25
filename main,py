@@ -6,8 +6,11 @@ def compute_calibration_success_probability(x):
     return c
 
 def generate_calibration_time():
-    f = 
-    return f
+    r = random.random()  # generate random number r between 0 and 1
+    # pdf = (r-4)/2
+    # cdf = ((r^2)/2-4*r)/2
+    i_cdf = math.sqrt(r) * 2 + 4
+    return i_cdf
 
 def simulate_module():
     t = 0  # time t=0
