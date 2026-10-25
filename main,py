@@ -1,3 +1,22 @@
 import math
 import random
 
+# time t=0
+# calibration counter n=1
+# t += 2 for setup
+# generate calibration time x -- https://uva.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=34eb552c-3404-4fcc-9640-b37800fcc5f9
+# calibration time c=(x-4)/2 
+# generate random number r between 0 and 1
+# if r < 0.7, module passes and process ends
+# else, module fails, continue process
+# if n == 3, module fails and process ends
+# else, continue to repair
+# generate random number r between 0 and 1
+# if r < 0.6, continue to software reset
+# else, continue to hardware reset
+# software reset: generate a repair time s according to uniform distribution between 1 and 2
+# hardware reset: generate a repair time s according to uniform distribution between 3 and 5
+# t += s
+# n += 1
+# repeat the process from setup
+# repeat for 1000 modules
