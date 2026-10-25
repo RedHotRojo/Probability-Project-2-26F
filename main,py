@@ -3,7 +3,7 @@ import random
 
 def compute_calibration_success_probability(x):
     # pdf = (r-4)/2
-    cdf = (x ** 2) / 4 - 2*x
+    cdf = (x ** 2) / 4 - 2*x + 4
     return cdf
 
 def generate_calibration_time():
@@ -39,7 +39,7 @@ def simulate_module():
 
 times = []
 approvals = []
-for i in range(1000):  # repeat for 1000 modules
+for i in range(1000):
     t, result = simulate_module()
     times += [t]
     approvals.append(result)
