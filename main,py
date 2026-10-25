@@ -2,8 +2,9 @@ import math
 import random
 
 def compute_calibration_success_probability(x):
-    c = 
-    return c
+    # pdf = (r-4)/2
+    cdf = (x^2) / 4 - 2*x
+    return cdf
 
 def generate_calibration_time():
     r = random.random()  # generate random number r between 0 and 1
