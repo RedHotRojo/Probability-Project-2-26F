@@ -47,6 +47,11 @@ for i in range(1000):
 print(times, file=open("times.txt", "w"))
 print(approvals, file=open("approvals.txt", "w"))
 
+with open("results.csv", "w") as f:
+    f.write("time,approval\n")
+    for t, result in zip(times, approvals):
+        f.write(f"{t},{result}\n")
+
 # time t=0
 # calibration counter n=1
 # t += 2 for setup
