@@ -1,35 +1,27 @@
 import math
 import random
 
-def compute_calibration_success_probability(x):
-    # pdf = (r-4)/2
-    cdf = (x ** 2) / 4 - 2*x + 4
-    return cdf
-
 def generate_calibration_time():
-    r = random.random()  # generate random number r between 0 and 1
-    # pdf = (r-4)/2
-    # cdf = ((r^2)/2-4*r)/2
+    r = random.random()
     i_cdf = math.sqrt(r) * 2 + 4
     return i_cdf
 
 def simulate_module():
-    t = 0  # time t=0
-    n = 1  # calibration counter n=1
+    t = 0
+    n = 1 
 
     while True:
-        t += 2  # t += 2 for setup
-        # generate calibration time x
+        t += 2  # setup time
         x = generate_calibration_time()
-        c = compute_calibration_success_probability(x)
+        r = random.random()
 
-        if c < 0.7:
+        if r < 0.7:
             return t, True  # module passes and process ends
         else:
             if n == 3:
                 return t, False  # module fails and process ends
             else:
-                r = random.random()  # generate random number r between 0 and 1
+                r = random.random()
                 if r < 0.6:
                     s = random.uniform(1, 2)  # software reset: repair time s between 1 and 2
                 else:
@@ -51,22 +43,3 @@ with open("results.csv", "w") as f:
     f.write("time,approval\n")
     for t, result in zip(times, approvals):
         f.write(f"{t},{result}\n")
-
-# time t=0
-# calibration counter n=1
-# t += 2 for setup
-# generate calibration time x -- https://uva.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=34eb552c-3404-4fcc-9640-b37800fcc5f9
-# calibration time c=(x-4)/2 
-# if c < 0.7, module passes and process ends
-# else, module fails, continue process
-# if n == 3, module fails and process ends
-# else, continue to repair
-# generate random number r between 0 and 1
-# if r < 0.6, continue to software reset
-# else, continue to hardware reset
-# software reset: generate a repair time s according to uniform distribution between 1 and 2
-# hardware reset: generate a repair time s according to uniform distribution between 3 and 5
-# t += s
-# n += 1
-# repeat the process from setup
-# repeat for 1000 modules
